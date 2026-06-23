@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 @import "tailwindcss";
 @import "@heroui/styles";
 :root {
@@ -23,4 +24,66 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Geist', sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Custom scrollbar matching original behavior */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f9f9ff;
+}
+::-webkit-scrollbar-thumb {
+  background: #e5e2e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c8c6c5;
+}
+
+/* Prose formatting helpers */
+.prose-content p {
+  margin-bottom: 1.5rem;
+  color: #5f5e5e;
+}
+
+.prose-content h2 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  scroll-margin-top: 100px;
+  color: #151c27;
+}
+
+.prose-content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.prose-content li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #5f5e5e;
+}
+
+.prose-content li::before {
+  content: "•";
+  color: #9c4400;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
 }

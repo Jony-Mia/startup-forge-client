@@ -1,7 +1,10 @@
 "use client";
-
+import { Google, GoogleIcon } from "@dev.icons/react";
+import Image from "next/image";
 import React, { useState } from "react";
-
+import RegistrationImage from "@/assets/undraw_content-team_1p7b.png"
+import { ArrowRight, Persons, Thunderbolt } from "@gravity-ui/icons";
+import { Description, Radio, RadioGroup } from "@heroui/react";
 export default function SignUpPage() {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -18,12 +21,13 @@ export default function SignUpPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
+
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-100 p-4 font-sans antialiased selection:bg-indigo-500 selection:text-white">
       <div className="flex w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-xl">
-        
+
         {/* Left Side: Branding Panel */}
         <div className="relative hidden w-1/2 flex-col justify-between bg-[#0e172c] p-12 text-white lg:flex">
           <div className="space-y-8">
@@ -34,12 +38,21 @@ export default function SignUpPage() {
               Join a curated ecosystem of visionaries and high-performance builders. Your next big leap starts here.
             </p>
 
+            <div className="mt-12 space-y-4">
+
+              <div  >
+                <Image src={RegistrationImage} alt="registration" className="rounded-3xl" />
+
+              </div>
+
+              <p className="italic text-xs text-slate-400 tracking-wide">"Forge your legacy."</p>
+            </div>
+
             <div className="space-y-6 pt-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-800/80 border border-slate-700/50">
-                  <svg className="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+
+                  <Thunderbolt className="h-5 w-5 text-indigo-400" />
                 </div>
                 <div>
                   <h3 className="text-base font-semibold">Launch faster</h3>
@@ -49,9 +62,8 @@ export default function SignUpPage() {
 
               <div className="flex items-start gap-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-800/80 border border-slate-700/50">
-                  <svg className="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
+
+                  <Persons className="h-5 w-5 text-indigo-400" />
                 </div>
                 <div>
                   <h3 className="text-base font-semibold">Global Network</h3>
@@ -60,24 +72,11 @@ export default function SignUpPage() {
               </div>
             </div>
           </div>
-
-          <div className="mt-12 space-y-4">
-            <div className="overflow-hidden rounded-xl bg-slate-900/60 p-4 border border-slate-800/80 backdrop-blur-sm">
-              <div className="h-32 w-full rounded-lg bg-slate-800/40 border border-slate-700/30 flex items-center justify-center p-4">
-                <div className="w-full space-y-2 opacity-40">
-                  <div className="h-3 w-1/3 rounded bg-slate-600"></div>
-                  <div className="h-2 w-full rounded bg-slate-700"></div>
-                  <div className="h-2 w-5/6 rounded bg-slate-700"></div>
-                </div>
-              </div>
-            </div>
-            <p className="italic text-xs text-slate-400 tracking-wide">"Forge your legacy."</p>
-          </div>
         </div>
 
         {/* Right Side: Form Panel */}
-        <div className="w-full p-8 sm:p-12 lg:w-1/2 bg-[#f8fafc]">
-          
+        <div className="w-full p-8 sm:p-12 lg:w-1/2 bg-white">
+
           {/* Stepper Header */}
           <div className="mb-8 flex items-center justify-between text-xs font-semibold text-slate-500">
             <div className="flex items-center gap-2">
@@ -97,6 +96,7 @@ export default function SignUpPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
+
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1.5">Full Name</label>
               <input
@@ -122,6 +122,29 @@ export default function SignUpPage() {
                 required
               />
             </div>
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Select your Type</label>
+              <RadioGroup defaultValue={"founder"}>
+                <Radio value="founder" >
+                  <Radio.Content>
+                    <Radio.Control>
+                      <Radio.Indicator />
+                    </Radio.Control>
+                    Founder
+                  </Radio.Content>
+                </Radio>
+
+                <Radio value="collaborator">
+                  <Radio.Content>
+                    <Radio.Control>
+                      <Radio.Indicator />
+
+                    </Radio.Control>
+                    Collaborator
+                  </Radio.Content>
+                </Radio>
+              </RadioGroup>
+            </div>
 
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1.5">Password</label>
@@ -146,7 +169,7 @@ export default function SignUpPage() {
                   </svg>
                 </button>
               </div>
-              
+
               {/* Password Requirements UI */}
               <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-slate-500">
                 <span className="flex items-center gap-1">
@@ -165,7 +188,7 @@ export default function SignUpPage() {
             </div>
 
             {/* Profile Avatar Upload */}
-            <div>
+            {/* <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1.5">Profile Avatar</label>
               <div className="group relative flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50/30 px-6 py-5 text-center transition hover:bg-slate-50">
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 group-hover:scale-105 transition duration-200">
@@ -177,7 +200,7 @@ export default function SignUpPage() {
                 <p className="mt-0.5 text-[10px] text-slate-400">PNG, JPG up to 5MB</p>
                 <input type="file" accept="image/*" className="absolute inset-0 cursor-pointer opacity-0" />
               </div>
-            </div>
+            </div> */}
 
             {/* Submit Button */}
             <button
@@ -185,13 +208,30 @@ export default function SignUpPage() {
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0e172c] py-3 text-sm font-semibold text-white transition hover:bg-slate-800 active:scale-[0.99]"
             >
               Continue to Role
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+              <ArrowRight />
             </button>
           </form>
-        </div>
 
+          {/* Separator Divider */}
+
+        {/* Google OAuth Button */}
+        <div>
+          <div className="my-6 flex items-center justify-center">
+            <div className="h-[1px] flex-1 bg-slate-200"></div>
+            <span className="px-3 text-[10px] font-bold tracking-wider text-slate-400 uppercase">
+              Or Email
+            </span>
+            <div className="h-[1px] flex-1 bg-slate-200"></div>
+          </div>
+        </div>
+          <button
+            type="button"
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 active:scale-[0.99]"
+          >
+            <GoogleIcon size={20} />
+            Continue with Google
+          </button>
+        </div>
       </div>
     </div>
   );

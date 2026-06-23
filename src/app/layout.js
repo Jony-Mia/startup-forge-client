@@ -3,7 +3,7 @@ import "./globals.css";
 import NavbarSection from "@/componet/NavbarSection";
 import { FooterSection } from "@/componet/FooterSection";
 
-const geistSans = Geist({
+export const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });

@@ -21,7 +21,7 @@ export default function NavbarSection() {
               Home
             </Link>
             <Link 
-              href="/startups" 
+              href="/browse" 
               className="text-xs font-semibold text-slate-600 transition hover:text-slate-900"
             >
               Browse Startups
@@ -31,6 +31,12 @@ export default function NavbarSection() {
               className="text-xs font-semibold text-slate-600 transition hover:text-slate-900"
             >
               Browse Opportunities
+            </Link>
+            <Link 
+              href="/privacy" 
+              className="text-xs font-semibold text-slate-600 transition hover:text-slate-900"
+            >
+             Privacy
             </Link>
           </nav>
         </div>
