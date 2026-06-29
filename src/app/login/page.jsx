@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -19,10 +20,24 @@ export default function LoginPage() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    let {data, error} = await authClient.signIn.email({
+      email: formData.email,
+      password: formData.password,
+      rememberMe: formData.rememberMe
+    })
+    console.log(data, error)
     // Handle login submission logic here
   };
+    const continueWithGoogle = async () => {
+    let { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/"
+    })
+    console.log(data, error);
+
+  }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 p-4 font-sans antialiased">
@@ -41,6 +56,7 @@ export default function LoginPage() {
 
         {/* Google OAuth Button */}
         <button
+          onClick={continueWithGoogle}
           type="button"
           className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 active:scale-[0.99]"
         >

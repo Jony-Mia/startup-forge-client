@@ -4,6 +4,8 @@ import { Button, Card, Chip, ProgressBar } from '@heroui/react';
 import Image from 'next/image';
 
 const Hero = () => {
+ 
+  
     return (
         <div>
               <section className="bg-[#fafaf9] min-h-screen flex items-center justify-center p-6 md:p-12">

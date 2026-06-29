@@ -1,15 +1,16 @@
 "use client";
 
 import { PostRoute } from "@/api/actionRoutes";
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { Button, Calendar, DateField, DatePicker, Description, FieldError, Input, Label, Radio, RadioGroup, TextField } from "@heroui/react";
-import axios from "axios";
+// import axios from "axios";
 
 export default function WithForm() {
     let [isDragging, setIsDragging] = useState(false);
     let fileInputRef = useRef(null)
     let [selectedFile, setSelectedFile] = useState(null);
+    // let [valid, setValid] = false
     let [opData, setOpData] = useState({
         role: "",
         startup: "",
@@ -28,9 +29,8 @@ export default function WithForm() {
         e.dataTransfer.files[0]
         console.log(e)
     }
-    let triggerFile = () => {
-        fileInputRef.current.click()
-    }
+    let triggerFile = () => fileInputRef.current.click()
+    
     let dragLeave = () => {
         setIsDragging(false)
     }
@@ -45,16 +45,15 @@ export default function WithForm() {
             fileInputRef.current.value = ""
         }
     }
-    let dataChange = (e) => {
-        let name = e.target.name;
-        let value = e.target.value;
-
-        console.log(opData)
-        setOpData(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
+    // let dataChange = (e) => {
+    //     let name = e.target.name;
+    //     let value = e.target.value;
+    //     console.log(opData)
+    //     setOpData(prev => ({
+    //         ...prev,
+    //         [name]: value
+    //     }))
+    // }
     const dataSubmit = async (e) => {
         e.preventDefault()
 
@@ -64,14 +63,16 @@ export default function WithForm() {
         dataField.skills = dataField.skills.trim().split(" ")
 
         console.log(dataField);
-
-        // try {
-        //     let fetchImage = await axios.post(`https://api.imgbb.com/1/upload?key=3400c5b9c87c9fadca80817ae1c398a6`, formData)
-        //     let imageData = await fetchImage.data;
-        //     dataField.image = imageData.data.uri;
-        //     await PostRoute(dataField);
-        // } catch (error) {
-        //     console.log(error);
+        // if (dataField.image!==null) {
+        //     try {
+        //         let fetchImage = await axios.post(`https://api.imgbb.com/1/upload?key=3400c5b9c87c9fadca80817ae1c398a6`, formData)
+        //         let imageData = await fetchImage.data;
+        //         dataField.image = imageData.data.uri;
+        await PostRoute(dataField);
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        //     return;
         // }
 
     }
@@ -81,15 +82,15 @@ export default function WithForm() {
             <form onSubmit={dataSubmit} className="flex flex-col gap-4 container mx-auto md:w-[50%] sm:w-[90%] lg:w-[40%] p-4 m-5 border border-blue-400 rounded-2xl">
                 <TextField className="w-full" type="text" variant="secondary" isRequired>
                     <Label>Role Title</Label>
-                    <Input placeholder="Enter your name" name="role" />
+                    <Input placeholder="Enter your name" name="title_role" />
                 </TextField>
                 <TextField className="w-full" type="text" isRequired>
                     <Label>Skills</Label>
-                    <Input name="skills" placeholder="Enter your skills" />
+                    <Input name="requiired_skills" placeholder="Enter your skills" />
                     <Description>Kindly Separate by space</Description>
                 </TextField>
 
-                {!selectedFile && (
+                {!selectedFile || (
                     <div className={`w-full h-48 border-2 border-dashed rounded-xl flex flex-col items-center justify-center gap-4 p-4 transition-colors cursor-pointer
                     ${isDragging
                             ? 'border-primary bg-primary/10'
@@ -100,7 +101,7 @@ export default function WithForm() {
                         onClick={triggerFile}
                         onDragLeave={dragLeave}
                     >
-                        <input name="image" type="file" className="hidden" ref={fileInputRef} onChange={fileChange} />
+                        <input name="image" type="file" multiple="5" className="hidden" ref={fileInputRef} onChange={fileChange} />
 
                         <div className="text-center">
                             <p className="text-sm text-default-500">
@@ -131,7 +132,7 @@ export default function WithForm() {
                     </div>
                 )}
 
-                <RadioGroup defaultValue={"onsite"} name="workType" isRequired>
+                <RadioGroup defaultValue={"onsite"} name="work_type" isRequired>
                     <Label>Work Type</Label>
                     <Radio value="remote" >
                         <Radio.Content>
@@ -162,7 +163,7 @@ export default function WithForm() {
 
                 <TextField className="w-full" variant="secondary" isRequired>
                     <Label>Commitment Level</Label>
-                    <Input placeholder="Enter your message" name="commit" />
+                    <Input placeholder="Enter your message" name="commitment_level" />
                 </TextField>
 
                 <DatePicker isRequired name="deadline" >
@@ -205,7 +206,6 @@ export default function WithForm() {
 
                 <Button type="submit" >Submit</Button>
             </form>
-
         </>
     );
 }

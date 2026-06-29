@@ -6,42 +6,43 @@ import RegistrationImage from "@/assets/undraw_content-team_1p7b.png"
 import { ArrowRight, Check, Eye, EyeSlash, Persons, Thunderbolt } from "@gravity-ui/icons";
 import { Button, Input, InputGroup, Label, Radio, RadioGroup, TextField } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
-import axios from "axios";
 
 
 export default function SignUpPage() {
 
   const [showPassword, setShowPassword] = useState(false);
-  console.log(process.env.IMAGE_BB_API_KEY);
 
-  const imageUpload = async (e) => {
-    // let formFields = new FormData()
+  // const imageUpload = async (e) => {
+  //   // let formFields = new FormData()
 
-    let file = e.target.files[0]
-    // formFields.append("image", file)
-    console.log(file);
-
-  //   let fetchImage = await axios.post(`https://api.imgbb.com/1/upload?key=3400c5b9c87c9fadca80817ae1c398a6`, formFields)
-
-  //   let imageData = await fetchImage.data
+  //   let file = e.target.files[0]
+  //   // formFields.append("image", file)
   //   console.log(file);
-  //   console.log(imageData);
 
-  //   return imageData;
-  }
+  // //   let fetchImage = await axios.post(`https://api.imgbb.com/1/upload?key=3400c5b9c87c9fadca80817ae1c398a6`, formFields)
+
+  // //   let imageData = await fetchImage.data
+  // //   console.log(file);
+  // //   console.log(imageData);
+
+  // //   return imageData;
+  // }
+  let env =process.env.BETTER_AUTH_SECRET
+  console.log(env);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     let form = e.currentTarget;
     let formFields = new FormData(form)
     let formData = Object.fromEntries(formFields.entries())
     console.log(formData);
-    
 
-    let file = formFields.get("image")
-    console.log(file)
-    formFields.append("image", file)
-    console.log(formFields);
-    
+
+    // let file = formFields.get("image")
+    // console.log(file)
+    // formFields.append("image", file)
+    // console.log(formFields);
+
     // console.log(formFields);
     // let fetchImage = await axios.post(`https://api.imgbb.com/1/upload?key=3400c5b9c87c9fadca80817ae1c398a6`, formFields)
     // let imageData = await fetchImage.data;
@@ -49,17 +50,13 @@ export default function SignUpPage() {
     // console.log(imageData.data.uri);
     // return imageData;
 
-    // let { data, error } = await authClient.signUp.email({
-    //   name: formData.fullName,
-    //   email: formData.email,
-    //   password: formData.password,
-    //   // userType: formData.userType,
-    //   callbackURL: "/"
-
-    // })
-    // console.log(data, error);
-
-    // Handle form submission logic here
+    let { data, error } = await authClient.signUp.email({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      callbackURL: "/"
+    })
+    console.log(data, error);
   };
   const continueWithGoogle = async () => {
     let { data, error } = await authClient.signIn.social({
@@ -143,7 +140,7 @@ export default function SignUpPage() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
 
-            <TextField name="fullName" type="text" isRequired>
+            <TextField name="name" type="text" isRequired>
               <Label className="block text-xs font-semibold text-slate-700 mb-1.5">Full Name</Label>
               <Input
 
@@ -160,11 +157,12 @@ export default function SignUpPage() {
                 className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3.5 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:bg-white"
               />
             </TextField>
-            <input type="file" name="image"/>
-            <br/>
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">Select your Type</label>
+            {/* <input type="file" name="image"/> */}
+            <br />
+            {/* <div> */}
+            
               <RadioGroup defaultValue={"founder"} name="userType" aria-label="type" isRequired>
+              <Label className="block text-xs font-semibold text-slate-700 mb-1.5">Select your Type</Label>
                 <Radio value="founder"  >
                   <Radio.Content >
                     <Radio.Control>
@@ -183,7 +181,7 @@ export default function SignUpPage() {
                   </Radio.Content>
                 </Radio>
               </RadioGroup>
-            </div>
+            {/* </div> */}
 
             <div>
               {/* <Label className="block text-xs font-semibold text-slate-700 mb-1.5">Password</Label> */}
@@ -248,7 +246,7 @@ export default function SignUpPage() {
             Continue with Google
           </Button>
           <br />
-          
+
         </div>
       </div>
     </div>

@@ -1,12 +1,18 @@
 "use client";
 
+import { useSession } from "@/lib/auth-client";
 import { Bars } from "@gravity-ui/icons";
 import { Button, Dropdown } from "@heroui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Avatar from "@/assets/avatar_male.png";
+import Image from "next/image";
 
 export default function NavbarSection() {
   let path = usePathname();
+  let { data } = useSession()
+  let user = data?.user;
+  console.log(user)
 
   return (
     <header className="w-full bg-white px-6 py-4 shadow-sm border-b border-gray-100">
@@ -34,7 +40,7 @@ export default function NavbarSection() {
                     Add Opportunities
                   </Dropdown.Item>
                   <Dropdown.Item href="/privacy">
-                   Privacy
+                    Privacy
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown.Popover>
@@ -80,21 +86,40 @@ export default function NavbarSection() {
         </div>
 
         {/* Right Side: Authentication Buttons */}
-        <div className="flex items-center gap-4">
+        {
+          user ?
+            <div className="flex gap-3 items-center">
+              <div>
+                {user?.image ?
+                <img src={user.image} className="rounded-full " alt="user profile image" width="40" height="40" /> :
+                <Image src={Avatar} alt="user profile avatar" width="50" /> 
+                
+                }
+              </div>
+              <div className="flex flex-col">
+                <span>{user.name}</span>
+                <small>{user.email}</small>
+              </div>
+            </div>
 
-          <Link
-            href="/login"
-            className="text-xs font-bold text-orange-600 transition hover:text-orange-700"
-          >
-            Login
-          </Link>
-          <Link
-            href="/signup"
-            className="rounded-lg bg-orange-500 px-4 py-2 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
-          >
-            Sign Up
-          </Link>
-        </div>
+            :
+            <div className="flex items-center gap-4">
+
+              <Link
+                href="/login"
+                className="text-xs font-bold text-orange-600 transition hover:text-orange-700"
+              >
+                Login
+              </Link>
+              <Link
+                href="/signup"
+                className="rounded-lg bg-orange-500 px-4 py-2 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
+              >
+                Sign Up
+              </Link>
+            </div>
+        }
+
 
       </div>
     </header>
