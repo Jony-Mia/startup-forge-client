@@ -10,16 +10,15 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function NavbarSection() {
-  let [userData, setUserData]= useState(null);
+  let [userData, setUserData] = useState(null);
   let path = usePathname();
   let { data } = useSession()
   let user = data?.user;
-  
-  useEffect(()=>{    
+
+  useEffect(() => {
     setUserData(user)
-  },[user])
-  let logout = async()=> await authClient.signOut();
-  console.log(user)
+  }, [user])
+  let logout = async () => await authClient.signOut();
 
   return (
     <header className="w-full bg-white px-6 py-4 shadow-sm border-b border-gray-100">
@@ -118,7 +117,7 @@ export default function NavbarSection() {
               <Dropdown.Popover>
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={logout} >
-                      Log out
+                    Log out
                   </Dropdown.Item>
                   <Dropdown.Item href="/dashboard">
                     Dashboard
@@ -129,23 +128,21 @@ export default function NavbarSection() {
 
             :
             <div className="flex items-center gap-4">
-
               <Link
                 href="/login"
                 className="text-xs font-bold text-orange-600 transition hover:text-orange-700"
               >
-                Login
+                <Button variant="outline">
+                  Login
+                </Button>
               </Link>
-              <Link
-                href="/signup"
-                className="rounded-lg bg-orange-500 px-4 py-2 text-xs font-bold text-white transition hover:bg-orange-600 active:scale-[0.98]"
-              >
-                Sign Up
+              <Link href="/signup" >
+                <Button variant="ghost" className="bg-orange-500 px-4 py-2 text-white">
+                  Sign Up
+                </Button>
               </Link>
             </div>
         }
-
-
       </div>
     </header>
   );

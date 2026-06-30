@@ -15,7 +15,7 @@ const Hero = () => {
                       <div className="flex flex-col items-start space-y-6">
                         <Chip
                           size="sm"
-                          className="bg-[#fcebe0] text-[#b35e22] font-semibold tracking-wider uppercase px-2 py-4"
+                          className="bg-[#fcebe0] text-[#b35e22] font-semibold tracking-wider uppercase px-6 py-3 "
                           radius="full"
                         >
                           Launchpad V2.0

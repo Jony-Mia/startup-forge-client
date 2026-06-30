@@ -1,5 +1,4 @@
-import { Bars, Persons,SquarePlus, Envelope, Gear, ChartColumnStacked, Rocket, Person } from "@gravity-ui/icons";
-import { Button, Drawer } from "@heroui/react";
+import { Bars, Persons,SquarePlus, Envelope, Gear, ChartColumnStacked, Rocket, Person, CopyPlus, PersonPencil, FileLetterW } from "@gravity-ui/icons";
 
 const layout = ({ children }) => {
     return (
@@ -8,7 +7,7 @@ const layout = ({ children }) => {
                 <div>
                     <Navigation />
                 </div>
-                <div>
+                <div className="w-full">
                     {children}
                 </div>
             </div>
@@ -23,7 +22,10 @@ export function Navigation() {
         { icon: Rocket, label: "My Startup" },
         { icon: Persons, label: "Collaborator" },
         { icon: SquarePlus, label: "Create Startup" },
+        { icon: CopyPlus, label: "Create Opportunities" },
+        { icon: PersonPencil, label: "Manage" },
         { icon: Envelope, label: "Messages" },
+        { icon: FileLetterW, label: "Application" },
         { icon: Person, label: "Profile" },
         { icon: Gear, label: "Settings" },
     ];

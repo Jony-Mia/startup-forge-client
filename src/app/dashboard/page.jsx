@@ -1,9 +1,9 @@
-import React from 'react';
+import FounderOverview from "@/componet/FounderOverview";
 
 const page = () => {
     return (
         <div>
-            hello
+            <FounderOverview/>
         </div>
     );
 };
