@@ -2,7 +2,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 
 const API = axios.create({
-    baseURL:"http://localhost:4400" 
+    baseURL: "https://startup-forge-backend-iota.vercel.app" 
 })
 const IMAGE = axios.create({
     baseURL:"https://api.imgbb.com/1"

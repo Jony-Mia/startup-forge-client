@@ -48,6 +48,13 @@ export default function NavbarSection() {
                   <Dropdown.Item href="/privacy">
                     Privacy
                   </Dropdown.Item>
+                  {
+                    userData && (
+                      <Dropdown.Item href="/dashboard" >
+                        Dashboard
+                      </Dropdown.Item>
+                    )
+                  }
                 </Dropdown.Menu>
               </Dropdown.Popover>
             </Dropdown>
