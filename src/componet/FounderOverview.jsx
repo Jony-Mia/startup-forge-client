@@ -91,7 +91,7 @@ export default async function FounderOverview() {
           <Table.Header className={"rounded-none!"}>
             <Table.Column isRowHeader={true} className={"font-bold"}> Applicant </Table.Column>
             <Table.Column isRowHeader={true} className={"font-bold"}> Role Applied </Table.Column>
-            <Table.Column isRowHeader={true} className={"font-bold"}> Status </Table.Column>
+            <Table.Column isRowHeader={true} className={"font-bold"}> Work Type </Table.Column>
             <Table.Column isRowHeader={true} className={"font-bold"}> Actions </Table.Column>
           </Table.Header>
           <Table.Body>

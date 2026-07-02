@@ -1,11 +1,14 @@
-import { GetStartup } from "@/api/actionRoutes";
+import { GetStartup, EditStartup } from "@/api/actionRoutes";
 import { Button, Card } from "@heroui/react";
 import Image from "next/image";
+import EditButton from "./EditButton";
 
 const page = async () => {
     let startupDataList = await GetStartup()
+    // let edit = await EditStartup()
     return (
         <div>
+            <h2 className="text-3xl font-semibold">My Startup</h2>
             <div className="grid gap-3 grid-cols-3 w-full">
                 {
                     startupDataList.map(startup => {
@@ -26,7 +29,7 @@ const page = async () => {
                                     <p>{startup.description}</p>
                                 </Card.Content>
                                 <Card.Footer>
-                                    <Button>View</Button>
+                                    <EditButton >View</EditButton>
                                 </Card.Footer>
                             </Card>
                         )

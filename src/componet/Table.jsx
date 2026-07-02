@@ -11,11 +11,11 @@ const Tabler = ({data}) => {
             >
                 <Table.Content>
                     <Table.Header >
-                        <Table.Column className="bg-default-100 text-default-700 font-semibold text-sm">ROLE</Table.Column>
-                        <Table.Column className="bg-default-100 text-default-700 font-semibold text-sm">SKILLS REQUIRED</Table.Column>
-                        <Table.Column className="bg-default-100 text-default-700 font-semibold text-sm">WORK TYPE</Table.Column>
-                        <Table.Column className="bg-default-100 text-default-700 font-semibold text-sm">DEADLINE</Table.Column>
-                        <Table.Column className="bg-default-100 text-default-700 font-semibold text-sm align-middle text-right pr-6">ACTIONS</Table.Column>
+                        <Table.Column isRowHeader  className="bg-default-100 text-default-700 font-semibold text-sm">ROLE</Table.Column>
+                        <Table.Column isRowHeader  className="bg-default-100 text-default-700 font-semibold text-sm">SKILLS REQUIRED</Table.Column>
+                        <Table.Column isRowHeader className="bg-default-100 text-default-700 font-semibold text-sm">WORK TYPE</Table.Column>
+                        <Table.Column isRowHeader className="bg-default-100 text-default-700 font-semibold text-sm">DEADLINE</Table.Column>
+                        <Table.Column isRowHeader className="bg-default-100 text-default-700 font-semibold text-sm align-middle text-right pr-6">ACTIONS</Table.Column>
                     </Table.Header>
                     <Table.Body>
                         {data.map((item) => (
@@ -28,7 +28,9 @@ const Tabler = ({data}) => {
                                 </Table.Cell>
                                 <Table.Cell className="py-4">
                                     <div className="flex flex-wrap gap-1.5 max-w-md">
-                                        {item.required_skills?.map((skill, idx) => (
+                                      { console.log(item.required_skills) }
+                                      
+                                        {/* {item.required_skills?.map((skill, idx) => (
                                             <Chip
                                                 key={idx}
                                                 size="sm"
@@ -37,7 +39,7 @@ const Tabler = ({data}) => {
                                             >
                                                 {skill}
                                             </Chip>
-                                        ))}
+                                        ))} */}
                                     </div>
                                 </Table.Cell>
                                 <Table.Cell className="py-4">

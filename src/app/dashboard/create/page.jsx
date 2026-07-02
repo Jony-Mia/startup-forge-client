@@ -9,6 +9,7 @@ import { Button, Calendar, DateField, DatePicker, Description, FieldError, Input
 export default function Opportunities() {
     let [isDragging, setIsDragging] = useState(false);
     let fileInputRef = useRef(null)
+    let reset = useRef(null)
     let [selectedFile, setSelectedFile] = useState(null);
     // let [valid, setValid] = false
 
@@ -43,10 +44,10 @@ export default function Opportunities() {
         let currentTarget = e.currentTarget;
         let formData = new FormData(currentTarget)
         let dataField = Object.fromEntries(formData.entries());
-        dataField.skills = dataField.skills.trim().split(" ")
+        dataField.required_skills = dataField.required_skills?.trim().split(" ")
 
         await PostRoute(dataField);
-
+        reset.current.click()
     }
     return (
         <>
@@ -54,15 +55,15 @@ export default function Opportunities() {
             <form onSubmit={dataSubmit} className="flex flex-col gap-4 container mx-auto md:w-[70%] sm:w-[90%] lg:w-[70%] p-4 m-5 border border-blue-400 rounded-2xl">
                 <TextField className="w-full" type="text" variant="secondary" isRequired>
                     <Label>Role Title</Label>
-                    <Input placeholder="Enter your name" name="title_role" />
+                    <Input placeholder="Enter your name" name="role_title" />
                 </TextField>
                 <TextField className="w-full" type="text" isRequired>
                     <Label>Skills</Label>
-                    <Input name="requiired_skills" placeholder="Enter your skills" />
+                    <Input name="required_skills" placeholder="Enter your skills" />
                     <Description>Kindly Separate by space</Description>
                 </TextField>
 
-                {!selectedFile || (
+                {/* {!selectedFile || (
                     <div className={`w-full h-48 border-2 border-dashed rounded-xl flex flex-col items-center justify-center gap-4 p-4 transition-colors cursor-pointer
                     ${isDragging
                             ? 'border-primary bg-primary/10'
@@ -102,7 +103,7 @@ export default function Opportunities() {
                             Remove
                         </Button>
                     </div>
-                )}
+                )} */}
 
               <div className="flex gap-4 justify-between w-full sm:flex-wrap md:flex-wrap lg:flex-nowrap">
                   <RadioGroup defaultValue={"onsite"} name="work_type" isRequired className={"w-full"}>
@@ -134,7 +135,7 @@ export default function Opportunities() {
                     <FieldError>Work Type Must Needed</FieldError>
                 </RadioGroup>
 
-                <RadioGroup defaultValue={"full-time"} className="w-full" variant="secondary" isRequired>
+                <RadioGroup defaultValue={"full-time"} name="commitment_level" className="w-full" variant="secondary" isRequired>
                     <Label>Commitment Level</Label>
                     {/* <Input placeholder="Enter your message" name="commitment_level" /> */}
                     <Radio value="full-time" >
@@ -195,6 +196,7 @@ export default function Opportunities() {
                 </DatePicker>
 
                 <Button type="submit" >Submit</Button>
+                <Button type="reset" ref={reset} className={"hidden"} ></Button>
             </form>
         </>
     );
