@@ -143,7 +143,7 @@ export default function NavbarSection() {
                 href="/login"
                 className="text-xs font-bold text-orange-600 transition hover:text-orange-700"
               >
-                <Button variant="outline">
+                <Button className="hidden lg:block" variant="outline">
                   Login
                 </Button>
               </Link>
