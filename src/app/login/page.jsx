@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { Button, Input } from "@heroui/react";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let {data, error} = await authClient.signIn.email({
+    let { data, error } = await authClient.signIn.email({
       email: formData.email,
       password: formData.password,
       rememberMe: formData.rememberMe,
@@ -31,7 +32,7 @@ export default function LoginPage() {
     console.log(data, error)
     // Handle login submission logic here
   };
-    const continueWithGoogle = async () => {
+  const continueWithGoogle = async () => {
     let { data, error } = await authClient.signIn.social({
       provider: "google",
       callbackURL: "/"
@@ -44,7 +45,7 @@ export default function LoginPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 p-4 font-sans antialiased">
       {/* Login Card Wrapper */}
       <div className="w-full max-w-md rounded-2xl border border-slate-100 bg-white p-8 shadow-sm">
-        
+
         {/* Header Titles */}
         <div className="mb-6 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900">
@@ -56,7 +57,7 @@ export default function LoginPage() {
         </div>
 
         {/* Google OAuth Button */}
-        <button
+        <Button
           onClick={continueWithGoogle}
           type="button"
           className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 active:scale-[0.99]"
@@ -68,7 +69,7 @@ export default function LoginPage() {
             />
           </svg>
           Continue with Google
-        </button>
+        </Button>
 
         {/* Separator Divider */}
         <div className="my-6 flex items-center justify-center">
@@ -91,7 +92,7 @@ export default function LoginPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L22 8m-9 11h-3a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v10a2 2 0 01-2 2z" />
                 </svg>
               </span>
-              <input
+              <Input
                 type="email"
                 name="email"
                 value={formData.email}

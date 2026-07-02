@@ -30,7 +30,7 @@ const Tabler = ({data}) => {
                                     <div className="flex flex-wrap gap-1.5 max-w-md">
                                       { console.log(item.required_skills) }
                                       
-                                        {/* {item.required_skills?.map((skill, idx) => (
+                                        {item.required_skills?.map((skill, idx) => (
                                             <Chip
                                                 key={idx}
                                                 size="sm"
@@ -39,7 +39,7 @@ const Tabler = ({data}) => {
                                             >
                                                 {skill}
                                             </Chip>
-                                        ))} */}
+                                        ))}
                                     </div>
                                 </Table.Cell>
                                 <Table.Cell className="py-4">

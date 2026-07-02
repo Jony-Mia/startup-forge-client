@@ -30,14 +30,17 @@ const page = async () => {
     return (
         <div className=" mx-auto flex flex-col justify-center items-center">
 
-            <div className="flex text-center  flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+            <div className="flex text-center mt-4 flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                 <div>
                     <h1 className="text-3xl text-center font-bold tracking-tight text-default-900">Available Opportunities</h1>
-                    <p className="text-default-500 text-center text-sm mt-1">Manage and monitor active roles, skills criteria, and application timelines.</p>
+                    <p className="text-default-500 text-center text-sm mt-1">Manage and monitor active roles, skills criteria, 
+                        and application timelines.</p>
                 </div>
             </div>
             
-            <Tabler data={data} />
+            <div className="w-full">
+                <Tabler data={data} />
+            </div>
             
         </div>
     );

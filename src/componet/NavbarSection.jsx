@@ -26,43 +26,47 @@ export default function NavbarSection() {
 
         {/* Left Side: Brand and Navigation Links */}
         <div className="flex items-center gap-8">
-          <div className="block lg:hidden">
-            <Dropdown>
-              <Dropdown.Trigger className={"border p-2 rounded-2xl"} >
-                <Bars />
-              </Dropdown.Trigger>
-              <Dropdown.Popover>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="/">
-                    Home
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/browse">
-                    Browse
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/opportunities">
-                    Opportunities
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/add">
-                    Add Opportunities
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/privacy">
-                    Privacy
-                  </Dropdown.Item>
-                  {
-                    userData && (
-                      <Dropdown.Item href="/dashboard" >
-                        Dashboard
-                      </Dropdown.Item>
-                    )
-                  }
-                </Dropdown.Menu>
-              </Dropdown.Popover>
-            </Dropdown>
+          <div className="flex items-center lg:hidden">
+            <div>
+              <Dropdown>
+                <Dropdown.Trigger className={"border h-auto p-2 rounded-2xl"} >
+                  <Bars />
+                </Dropdown.Trigger>
+                <Dropdown.Popover>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="/">
+                      Home
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/browse">
+                      Browse
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/opportunities">
+                      Opportunities
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/add">
+                      Add Opportunities
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/privacy">
+                      Privacy
+                    </Dropdown.Item>
+                    {
+                      userData && (
+                        <Dropdown.Item href="/dashboard" >
+                          Dashboard
+                        </Dropdown.Item>
+                      )
+                    }
+                  </Dropdown.Menu>
+                </Dropdown.Popover>
+              </Dropdown>
+            </div>
+
+            <Link href="/" className="text-2xl font-bold tracking-tight text-slate-950">
+              <Image width="80" height="80" src={Logo} alt="startup forge" />
+            </Link>
           </div>
 
-          <Link href="/" className="text-2xl font-bold tracking-tight text-slate-950">
-            <Image width="80" height="80" src={Logo} alt="startup forge"/>
-          </Link>
+
 
           <nav className="hidden md:hidden items-center gap-6 lg:flex">
             <Link
